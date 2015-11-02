@@ -2,6 +2,9 @@ var polls = {};
 
 exports.init = function(app)
 {
+    // landing page
+    app.get("/", landing_page);
+
     // creating a new poll
     app.get("/createNewPoll/:poll_name", create_poll);
 
@@ -10,6 +13,26 @@ exports.init = function(app)
 
     // voting in a poll
     app.get("/:poll_name/vote/:choice", vote_on_poll);
+}
+
+list_polls = function(response)
+{
+    if( Object.keys(polls).length == 0)
+    {
+        response.write("\nThere are no polls");
+    }
+    Object.keys(polls).forEach( function(key)
+                                {
+                                    response.write("\n" + key);
+                                });
+}
+
+landing_page = function(requst, response)
+{
+    response.writeHead(200, {'Content-Type' : 'text'})
+    response.write("Welcome to polling!\nHere are the current polls");
+    list_polls(response);
+    response.end("");
 }
 
 showName = function(request, response)
@@ -42,10 +65,7 @@ get_poll_results = function(request, response)
         response.writeHead(200, {"Content-Type": "text"})
 
         response.write("There is no poll named " + request.params.poll_name + "\nHere are the current polls\n");
-        Object.keys(polls).forEach( function(key)
-                                    {
-                                        response.write(key + "\n");
-                                    });
+        list_polls(response);
         response.end("");
     }
 }
@@ -74,10 +94,7 @@ vote_on_poll = function(request, response)
         response.writeHead(200, {"Content-Type": "text"})
 
         response.write("There is no poll named " + request.params.poll_name + "\nHere are the current polls\n");
-        Object.keys(polls).forEach( function(key)
-                                    {
-                                        response.write(key + "\n");
-                                    });
+        list_polls(response);
         response.end("");
     }
 }
