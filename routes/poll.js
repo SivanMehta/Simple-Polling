@@ -12,7 +12,7 @@ exports.init = function(app)
     app.get("/createNewPoll/:poll_name", create_poll);
 
     // populate an example
-    app.get("/populate", populate_data);
+    app.get("/populate_example", populate_data);
 
     // getting poll results
     app.get("/:poll_name", get_poll_results);
