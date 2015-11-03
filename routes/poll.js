@@ -1,3 +1,6 @@
+var Chance = require("chance");
+var chance = new Chance();
+
 var polls = {};
 
 exports.init = function(app)
@@ -7,6 +10,9 @@ exports.init = function(app)
 
     // creating a new poll
     app.get("/createNewPoll/:poll_name", create_poll);
+
+    // populate an example
+    app.get("/populate", populate_data);
 
     // getting poll results
     app.get("/:poll_name", get_poll_results);
@@ -97,4 +103,36 @@ vote_on_poll = function(request, response)
         list_polls(response);
         response.end("");
     }
+}
+
+populate_data = function(request, response)
+{
+    response.writeHead(200, {'Content-Type' : 'text'})
+    response.write("Populating election poll... ");
+
+    polls["election"] = {};
+    // create candidates and get a random number of votes
+    for(var i = 0; i < 10; i ++)
+    {
+        var candidate = chance.name();
+        var votes = chance.integer({min: 0, max: 1000});
+
+        polls["election"][candidate] = votes;
+    }
+
+    response.write("done!\n");
+
+    response.write("Populating ideal vacation poll... ");
+
+    polls["ideal vacation"] = {};
+    // create candidates and get a random number of votes
+    for(var i = 0; i < 10; i ++)
+    {
+        var candidate = chance.country({ full: true });
+        var votes = chance.integer({min: 0, max: 1000});
+
+        polls["ideal vacation"][candidate] = votes;
+    }
+
+    response.end("done!")
 }
