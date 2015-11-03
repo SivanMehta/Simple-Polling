@@ -4,6 +4,7 @@ var morgan = require('morgan');
 var app = express();
 app.use(morgan('tiny'));
 
+// load the routes
 require('./routes/poll.js').init(app);
 
 app.listen(50000);
