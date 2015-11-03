@@ -35,6 +35,12 @@ This inputs 1 vote for the movie `superbad`, you will then see something like th
 ```
 If `movies` has been created, you can see the votes made, otherwise you get a list of actual polls running
 
+#### Example Polls
+```
+/populate_example
+```
+You can create two example polls, `election` and `ideal vacation` by visiting this URL.
+
 ## Future Tasks
 
 *Provided I ever get here*
