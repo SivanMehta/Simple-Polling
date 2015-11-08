@@ -6,6 +6,7 @@ app.use(morgan('tiny'));
 
 // load the routes
 require('./routes/poll.js').init(app);
+app.use(express.static(__dirname + '/public'));
 
 app.listen(50000);
 
