@@ -22,23 +22,6 @@ list_polls = function()
     // for every poll, create a button and a function to get their results
     for(var i = 0; i < current_polls.length; i ++)
     {
-        $("#responseArea").append('<p><a class="btn" id = "poll' + i + '">'+ current_polls[i] + '</a></p>');
-
-        poll_name = $("#poll" + i).text();
-        $("#poll" + i).click
-        (
-            function()
-            {
-                $.ajax(
-                {
-                    url: 'polls/' + poll_name,
-                    type: 'GET',
-                    success: function(result)
-                    {
-                        console.log(result);
-                    }
-                });
-            }
-        );
+        $("#responseArea").append('<p><a class="btn" href = "/polls/' + current_polls[i] + '">'+ current_polls[i] + '</a></p>');
     }
 }
