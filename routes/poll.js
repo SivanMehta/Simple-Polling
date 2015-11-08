@@ -48,21 +48,9 @@ create_poll = function(request, response)
 
 get_poll_results = function(request, response)
 {
-    if(request.params.poll_name in polls)
-    {
-        response.writeHead(200, {"Content-Type": "application/json"})
-        var json = JSON.stringify(polls[request.params.poll_name]);
-        response.end(json);
-    }
-    else
-    {
-
-        response.writeHead(200, {"Content-Type": "text"})
-
-        response.write("There is no poll named " + request.params.poll_name + "\nHere are the current polls\n");
-        list_polls(response);
-        response.end("");
-    }
+    var desired_poll = request.params.poll_name;
+    console.log(desired_poll);
+    response.render('poll', {poll_data: polls[desired_poll] });
 }
 
 vote_on_poll = function(request, response)
