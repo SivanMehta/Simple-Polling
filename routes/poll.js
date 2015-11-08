@@ -5,52 +5,41 @@ var polls = {};
 
 exports.init = function(app)
 {
-    // landing page
-    app.get("/", landing_page);
+    // get all polls
+    app.get("/getPolls", get_all_polls);
 
     // creating a new poll
-    app.get("/createNewPoll/:poll_name", create_poll);
+    app.get("/polls/createNewPoll/:poll_name", create_poll);
 
     // populate an example
-    app.get("/populate_example", populate_data);
+    app.get("/polls/populate_example", populate_data);
 
     // getting poll results
-    app.get("/:poll_name", get_poll_results);
+    app.get("/polls/:poll_name", get_poll_results);
 
     // voting in a poll
-    app.get("/:poll_name/vote/:choice", vote_on_poll);
+    app.get("/polls/:poll_name/vote/:choice", vote_on_poll);
 }
 
-list_polls = function(response)
+list_polls = function()
 {
-    if( Object.keys(polls).length == 0)
-    {
-        response.write("\nThere are no polls");
-    }
+    var list_of_polls = [];
     Object.keys(polls).forEach( function(key)
                                 {
-                                    response.write("\n" + key);
+                                    list_of_polls.push(key);
                                 });
+
+    return list_of_polls;
 }
 
-landing_page = function(requst, response)
+get_all_polls = function(request, response)
 {
-    response.writeHead(200, {'Content-Type' : 'text'})
-    response.write("Welcome to polling!\nHere are the current polls");
-    list_polls(response);
-    response.end("");
-}
-
-showName = function(request, response)
-{
-    response.writeHead(200, {"Content-Type": "text"})
-
-    response.end(request.params.name + " is your name");
+    response.send(list_polls());
 }
 
 create_poll = function(request, response)
 {
-    response.writeHead(200, {"Content-Type": "text"})
+    response.writeHead(200, {"Content-Type": "text"});
 
     polls[request.params.poll_name] = {};
 
