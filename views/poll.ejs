@@ -6,22 +6,6 @@
     <div class=  "container">
 
         <!-- generate some meta data, really belongs in controller, not here -->
-        <%
-        var max_votes = 0;
-        var total_votes = 0;
-
-        Object.keys(poll_data).forEach(  function(item)
-        {
-            var votes_for = poll_data[item];
-            total_votes += votes_for;
-
-            if(votes_for > max_votes)
-            {
-                max_votes = votes_for;
-            }
-        });
-
-        %>
 
         <h1>Results for <%= poll_name %></h1>
         <h4>(<%= total_votes %> votes)</h4>

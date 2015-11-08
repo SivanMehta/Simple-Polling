@@ -50,9 +50,29 @@ get_poll_results = function(request, response)
 {
     var desired_poll = request.params.poll_name;
 
+    var max_votes = 0;
+    var total_votes = 0;
+
+    poll_data = polls[desired_poll];
+
+    Object.keys(poll_data).forEach(  function(item)
+    {
+        var votes_for = poll_data[item];
+        total_votes += votes_for;
+
+        if(votes_for > max_votes)
+        {
+            max_votes = votes_for;
+        }
+    });
+
+
+
     response.render('poll', {
-        poll_data: polls[desired_poll],
-        poll_name: desired_poll
+        poll_data: poll_data,
+        poll_name: desired_poll,
+        total_votes: total_votes,
+        max_votes: max_votes
         });
 }
 
