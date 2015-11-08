@@ -1,6 +1,6 @@
 # Simple Polling
 
-This is a simple Node.js app used to easily make polls. Right now it works purely through an URL API and text responses. Hopefully I can make it work like a proper app should.
+This is a simple Node.js app used to easily make polls. Hopefully I can make it work like a proper app should.
 
 ## Usage
 
