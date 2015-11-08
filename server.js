@@ -13,6 +13,12 @@ app.get('/', function(request, response)
 });
 app.use(express.static(__dirname + '/views'));
 
-app.listen(50000);
 
-console.log("Server listening at http://localhost:50000/");
+ipaddress = "127.0.0.1";
+port = 50000;
+
+app.listen(port, ipaddress, function()
+{
+    console.log("Server listening at " + ipaddress + ":" +port)
+});
+
