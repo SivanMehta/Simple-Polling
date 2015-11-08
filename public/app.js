@@ -22,6 +22,29 @@ list_polls = function()
     // for every poll, create a button and a function to get their results
     for(var i = 0; i < current_polls.length; i ++)
     {
-        $("#responseArea").append('<p><a class="btn" href = "/polls/' + current_polls[i] + '">'+ current_polls[i] + '</a></p>');
+        $("#responseArea").prepend('<p><a class="btn blue" href = "/polls/' + current_polls[i] + '">'+ current_polls[i] + '</a></p>');
     }
 }
+
+$(function()
+{
+    $("#create_poll").click
+    (
+        function()
+        {
+            var poll_name = window.prompt("What is the poll's name?")
+
+            $.ajax(
+            {
+                url: 'createNewPoll/' + poll_name,
+                type: 'POST',
+                success: function(result)
+                {
+                    console.log(result);
+                }
+            });
+
+            location.reload();
+        }
+    )
+});
