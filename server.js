@@ -7,6 +7,10 @@ app.use(morgan('tiny'));
 
 // load the routes
 require('./routes/poll.js').init(app);
+app.get('/', function(request, response)
+{
+    response.render("index");
+});
 app.use(express.static(__dirname + '/views'));
 
 app.listen(50000);
