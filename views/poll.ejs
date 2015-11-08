@@ -1,8 +1,44 @@
-<h1>Results for <%= poll_name %></h1>
-<ul>
-    <% Object.keys(poll_data).forEach(  function(item){ %>
+<html>
+    <header>
+        <% include partials/header %>
+    </header>
+<body>
+    <div class=  "container">
 
-        <li><%= item %>: <%= poll_data[item] %></li>
+        <!-- generate some meta data, really belongs in controller, not here -->
+        <%
+        var max_votes = 0;
+        var total_votes = 0;
 
-    <% }); %>
-</ul>
+        Object.keys(poll_data).forEach(  function(item)
+        {
+            var votes_for = poll_data[item];
+            total_votes += votes_for;
+
+            if(votes_for > max_votes)
+            {
+                max_votes = votes_for;
+            }
+        });
+
+        %>
+
+        <h1>Results for <%= poll_name %></h1>
+        <h4>(<%= total_votes %> votes)</h4>
+
+        <ul>
+            <% Object.keys(poll_data).forEach(  function(item){ %>
+
+                <li>
+                    <%= item %>: <%= poll_data[item] %>
+                    <span class="progress">
+                      <span class="determinate" style="width: <%= poll_data[item]/max_votes*100 %>%"></span>
+                    </span>
+                </li>
+
+            <% }); %>
+        </ul>
+       
+    </div>
+</body>
+</html>
