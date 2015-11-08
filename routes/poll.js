@@ -49,7 +49,7 @@ create_poll = function(request, response)
 get_poll_results = function(request, response)
 {
     var desired_poll = request.params.poll_name;
-    console.log(desired_poll);
+
     response.render('poll', {
         poll_data: polls[desired_poll],
         poll_name: desired_poll
