@@ -1,3 +1,5 @@
+var current_polls = [];
+
 window.onload = function()
 {
     $.ajax(
@@ -6,10 +8,25 @@ window.onload = function()
         type: 'GET',
         success: function(result)
         {
-            for(var i = 0; i < result.length; i ++)
-            {
-                $("#responseArea").append('<a class="waves-effect waves-light btn">'+ result[i] + '</a><br />')
-            }
+            current_polls = result;
+
+            list_polls();
         }
     });
 };
+
+list_polls = function()
+{
+    for(var i = 0; i < current_polls.length; i ++)
+    {
+        $("#responseArea").append('<p><a class="btn" id = "poll' + i + '">'+ current_polls[i] + '</a></p>');
+
+        $("#poll" + i).click
+        (
+            function()
+            {
+                alert("clicked " + current_polls[i]);
+            }
+        );
+    }
+}
