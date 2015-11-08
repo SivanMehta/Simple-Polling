@@ -9,7 +9,7 @@ exports.init = function(app)
     app.get("/getPolls", get_all_polls);
 
     // creating a new poll
-    app.get("/polls/createNewPoll/:poll_name", create_poll);
+    app.post("/createNewPoll/:poll_name", create_poll);
 
     // populate an example
     app.get("/populate_example", populate_data);
