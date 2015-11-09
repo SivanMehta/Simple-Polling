@@ -18,7 +18,7 @@ exports.init = function(app)
     app.get("/polls/:poll_name", get_poll_results);
 
     // voting in a poll
-    app.get("/polls/:poll_name/vote/:choice", vote_on_poll);
+    app.post("/polls/:poll_name/vote/:choice", vote_on_poll);
 }
 
 list_polls = function()
