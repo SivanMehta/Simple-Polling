@@ -4,29 +4,33 @@
     </header>
 <body>
     <div class=  "container">
+        <div class = "row">
+            <div class = "col s4">
+                <h1>Results for <%= poll_name %></h1>
+            </div>
+            <div class = "col s6">
+                <h4>(<%= total_votes %> votes)</h4>
 
-        <h1>Results for <%= poll_name %></h1>
-        <h4>(<%= total_votes %> votes)</h4>
+                <ul>
+                    <% Object.keys(poll_data).forEach(  function(item){ %>
 
-        <ul>
-            <% Object.keys(poll_data).forEach(  function(item){ %>
+                        <li>
+                            <%= item %>: <%= poll_data[item] %>
+                            <% if(poll_data[item] == max_votes) { %>
+                                
+                                <%- '<b>WINNER!</b>' %>
+                                
+                            <% } %>
 
-                <li>
-                    <%= item %>: <%= poll_data[item] %>
-                    <% if(poll_data[item] == max_votes) { %>
-                        
-                        <%- '<b>WINNER!</b>' %>
-                        
-                    <% } %>
+                            <span class="progress">
+                              <span class="determinate" style="width: <%= poll_data[item]/max_votes*100 %>%"></span>
+                            </span>
+                        </li>
 
-                    <span class="progress">
-                      <span class="determinate" style="width: <%= poll_data[item]/max_votes*100 %>%"></span>
-                    </span>
-                </li>
-
-            <% }); %>
-        </ul>
-       
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 </html>
