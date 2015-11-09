@@ -12,6 +12,7 @@
             <div class = "col s6">
 
                 <a class="btn green" id = "create_new_entry"><i class="material-icons left">add</i>Add Option</a>
+
                 <ul>
                     <% Object.keys(poll_data).forEach(  function(item){ %>
 
@@ -19,7 +20,7 @@
                             <%= item %>: <%= poll_data[item] %>
                             <% if(poll_data[item] == max_votes) { %>
                                 
-                                <%- '<b>WINNER!</b>' %>
+                                <b>WINNER!</b>
                                 
                             <% } %>
 
@@ -30,7 +31,7 @@
 
                     <% }); %>
                 </ul>
-
+                
             </div>
         </div>
     </div>
