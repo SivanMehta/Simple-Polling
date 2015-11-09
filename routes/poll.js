@@ -53,18 +53,25 @@ get_poll_results = function(request, response)
     var max_votes = 0;
     var total_votes = 0;
 
-    poll_data = polls[desired_poll];
+    var poll_data = polls[desired_poll];
 
-    Object.keys(poll_data).forEach(  function(item)
+    try
     {
-        var votes_for = poll_data[item];
-        total_votes += votes_for;
-
-        if(votes_for > max_votes)
+        Object.keys(poll_data).forEach(  function(item)
         {
-            max_votes = votes_for;
-        }
-    });
+            var votes_for = poll_data[item];
+            total_votes += votes_for;
+
+            if(votes_for > max_votes)
+            {
+                max_votes = votes_for;
+            }
+        });
+    }
+    catch(err)
+    {
+        poll_data = {};
+    }
 
     response.render('poll', {
         poll_data: poll_data,
