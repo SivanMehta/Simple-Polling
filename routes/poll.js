@@ -55,23 +55,16 @@ get_poll_results = function(request, response)
 
     var poll_data = polls[desired_poll];
 
-    try
+    Object.keys(poll_data).forEach(  function(item)
     {
-        Object.keys(poll_data).forEach(  function(item)
-        {
-            var votes_for = poll_data[item];
-            total_votes += votes_for;
+        var votes_for = poll_data[item];
+        total_votes += votes_for;
 
-            if(votes_for > max_votes)
-            {
-                max_votes = votes_for;
-            }
-        });
-    }
-    catch(err)
-    {
-        poll_data = {};
-    }
+        if(votes_for > max_votes)
+        {
+            max_votes = votes_for;
+        }
+    });
 
     response.render('poll', {
         poll_data: poll_data,
