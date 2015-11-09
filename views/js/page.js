@@ -1,0 +1,10 @@
+$(function()
+{
+    $("#create_new_entry").click
+    (
+        function()
+        {
+            console.log("here!");
+        }
+    )
+});
