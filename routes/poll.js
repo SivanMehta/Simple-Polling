@@ -66,8 +66,6 @@ get_poll_results = function(request, response)
         }
     });
 
-
-
     response.render('poll', {
         poll_data: poll_data,
         poll_name: desired_poll,
