@@ -1,6 +1,6 @@
 # Simple Polling
 
-This is a simple Node.js app used to easily make polls. Hopefully I can make it work like a proper app should.
+This is a simple Node.js app used to easily make polls.
 
 ## Usage
 
